@@ -36,34 +36,36 @@ const ProductList = () => {
     if (selected === "All") {
       setFilteredData(product);
     } else {
-      setFilteredData(
-        product.filter((item) => item.category === selected)
-      );
+      setFilteredData(product.filter((item) => item.category === selected));
     }
   };
 
-  
   const handleSearch = (e) => {
     const term = e.target.value;
     setfilterbyinput(term);
     let filtered = product;
-    if(term !== ""){
-      filtered = filtered.filter((item) => item.title.toLowerCase().includes(term.toLowerCase()));
+    if (term !== "") {
+      filtered = filtered.filter((item) =>
+        item.title.toLowerCase().includes(term.toLowerCase())
+      );
     }
-    setFilteredData(filtered)
-  }
+    setFilteredData(filtered);
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen py-8">
       <div className="mx-auto max-w-7xl">
         {/* Category Filter Dropdown */}
-        <div className="mb-6 flex justify-end px-4">
-          <input type="text" 
-          placeholder="Search Product"
-          value={filterbyinput}
-          onChange={handleSearch}
-          className="border border-gray-300 rounded px-4 py-2"
-          />
+        <div className="mb-6 flex flex-col sm:flex-row justify-between items-center gap-4 px-4">
+          <div className="relative w-full sm:w-1/3">
+            <input
+              type="text"
+              placeholder="Search Product"
+              value={filterbyinput}
+              onChange={handleSearch}
+              className="border border-gray-300 rounded px-4 py-2"
+            />
+          </div>
           <select
             value={category}
             onChange={handleCategory}
@@ -98,15 +100,11 @@ const ProductList = () => {
                 <h4 className="text-base text-gray-800">
                   {item.title.substring(0, 30)}
                 </h4>
-                <p className="font-bold text-lg text-gray-800">
-                  ${item.price}
-                </p>
+                <p className="font-bold text-lg text-gray-800">${item.price}</p>
                 <p>
                   {item.category
                     .split(" ")
-                    .map(
-                      (word) => word[0].toUpperCase() + word.slice(1)
-                    )
+                    .map((word) => word[0].toUpperCase() + word.slice(1))
                     .join(" ")}
                 </p>
                 <button className="bg-blue-400 text-white hover:bg-blue-500 rounded py-1 px-4 mt-2.5">
