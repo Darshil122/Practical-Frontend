@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null); // Start as null, not []
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const getProductDetails = async () => {
